@@ -8,7 +8,7 @@ constructor(props) {
         CustomerID: '', CompanyName: '', ContactName: '', ContactTitle: '', Address: '',
         PostalCode: '', Country: '', City: '', Phone: '', Fax: ''
     }
-    
+
     this.handleChangeCustomerID = this.handleChangeCustomerID.bind(this);
     this.handleChangeCompanyName = this.handleChangeCompanyName.bind(this);
     this.handleChangeContactName = this.handleChangeContactName.bind(this);

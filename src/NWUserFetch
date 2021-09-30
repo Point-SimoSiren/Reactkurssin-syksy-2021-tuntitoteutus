@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import './App.css'
-import NWCustomerAdd from './NWCustomerAdd'
+//import NWUserAdd from './NWUserAdd'
 
-class NWCustomerFetch extends Component {
+class NWUserFetch extends Component {
 constructor(props) {
     super(props)
     this.state = {
-        customers: [],
+        users: [],
         recordcount: 0,
             start: 0,
             take: 10,
@@ -42,28 +42,27 @@ handleClickPrev = () => {
 
     haeNwRestApista() {
     //fetch('https://localhost:5001/api/customers?_page='+this.state.start+'&_limit='+this.state.take)
-    fetch(`https://localhost:5001/api/customers/r?offset= ${this.state.start}
+    fetch(`https://localhost:5001/api/users/r?offset= ${this.state.start}
     &limit= ${this.state.take}`)
     .then(res => res.json())
-    .then(oliot => this.setState({customers: oliot}))
+    .then(oliot => this.setState({users: oliot}))
     }
 
     render() {
-
+/*
         if (this.state.show === 'addForm')
         {
             return(
                 <NWCustomerAdd unmountMe={this.handleChildUnmount} />
             )
         }
-
-            //console.log("State on: ", this.state.customers)
+*/
 
             if (this.state.customers.length > 9)
             {
                 return(
                     <div>
-                        <h2>Asiakkaat</h2>
+                        <h2>Käyttäjät</h2>
 
                         <button onClick={this.handleClickPrev}>Edelliset</button>
                         <button onClick={this.handleClickNext}>Seuraavat</button>
@@ -72,19 +71,21 @@ handleClickPrev = () => {
                        <table>
                             <thead>
                                 <tr>
-                                    <th>Yritys</th>
-                                    <th>Yhteyshenkilö</th>
-                                    <th>Kaupunki</th>
-                                    <th>Maa</th>
+                                    <th>Etunimi</th>
+                                    <th>Sukunimi</th>
+                                    <th>Sähköposti</th>
+                                    <th>Käyttäjätunnus</th>
+                                    <th>Käyttäjätaso</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.customers.map(c => (
-                                    <tr key={c.customerId}>
-                                        <td>{c.companyName}</td>
-                                        <td>{c.contactName}</td>
-                                        <td>{c.city}</td>
-                                        <td>{c.country}</td>
+                                {this.state.users.map(c => (
+                                    <tr key={c.userId}>
+                                         <td>{c.firstname}</td>
+                                        <td>{c.lastname}</td>
+                                        <td>{c.email}</td>
+                                        <td>{c.username}</td>
+                                        <td>{c.accesslevelId}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -93,35 +94,38 @@ handleClickPrev = () => {
                     </div>
                 )
             }
-            else if (this.state.customers.length > 0 && this.state.customers.length < 10) {
+            else if (this.state.users.length > 0 && this.state.users.length < 10) {
                 return(
                     <div>
-                        <h2>Asiakkaat</h2>
+                        <h2>Käyttäjät</h2>
 
                         <button onClick={this.handleClickPrev}>Edelliset</button>
                         <button disabled="true">Seuraavat</button>
                         <button onClick={this.handleClickAddForm}>Lisää uusi</button>
 
-                       <table>
+                        <table>
                             <thead>
                                 <tr>
-                                    <th>Yritys</th>
-                                    <th>Yhteyshenkilö</th>
-                                    <th>Kaupunki</th>
-                                    <th>Maa</th>
+                                    <th>Etunimi</th>
+                                    <th>Sukunimi</th>
+                                    <th>Sähköposti</th>
+                                    <th>Käyttäjätunnus</th>
+                                    <th>Käyttäjätaso</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.customers.map(c => (
-                                    <tr key={c.customerId}>
-                                        <td>{c.companyName}</td>
-                                        <td>{c.contactName}</td>
-                                        <td>{c.city}</td>
-                                        <td>{c.country}</td>
+                                {this.state.users.map(c => (
+                                    <tr key={c.userId}>
+                                         <td>{c.firstname}</td>
+                                        <td>{c.lastname}</td>
+                                        <td>{c.email}</td>
+                                        <td>{c.username}</td>
+                                        <td>{c.accesslevelId}</td>
                                     </tr>
                                 ))}
                             </tbody>
                        </table>
+
 
                     </div>
                 )
@@ -134,4 +138,4 @@ handleClickPrev = () => {
     }
 }
 
-export default NWCustomerFetch
+export default NWUserFetch
