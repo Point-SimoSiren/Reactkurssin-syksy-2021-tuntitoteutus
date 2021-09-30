@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import AnalogWatch from './AnalogWatch'
 import NWCustomerFetch from './NWCustomerFetch'
+import NWUserFetch from './NWUserFetch'
+import TypicodeFetch from './TypicodeFetch'
 import Viestit from './Viestit'
 
 class Navigaatio extends Component {
@@ -14,6 +16,7 @@ class Navigaatio extends Component {
                 <nav className='navbar navbar-expand-lg navbar-light bg-light'>
                 <ul className='navbar-nav mr-auto'>
                     <li style={{ marginLeft: '10%' }}><Link to={'/'} className='nav-link'>Etusivu</Link></li>
+                    <li><Link to={'/TypicodeFetch'} className='nav-link'>Typicode-todos</Link></li>
                     <li><Link to={'/NWCustomerFetch'} className='nav-link'>Asiakashallinta</Link></li>
                     <li><Link to={'/NWProductsFetch'} className='nav-link'>Tuotehallinta</Link></li>
                     <li><Link to={'/UserFetch'} className='nav-link'>Käyttäjähallinta</Link></li>
@@ -25,8 +28,9 @@ class Navigaatio extends Component {
                 <Route exact path='/' component={AnalogWatch} />
                 <Route path='/NWCustomerFetch' component={NWCustomerFetch} />
                 <Route path='/NWProductsFetch' component={NWCustomerFetch} />
-                <Route path='/UserFetch' component={NWCustomerFetch} />
+                <Route path='/UserFetch' component={NWUserFetch} />
                 <Route path='/Viestit' component={Viestit} />
+                <Route path='/TypicodeFetch' component={TypicodeFetch} />
             </Switch>
 
             </div>

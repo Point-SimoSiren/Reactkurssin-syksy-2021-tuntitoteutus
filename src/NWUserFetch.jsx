@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './App.css'
-//import NWUserAdd from './NWUserAdd'
+import NWUserAdd from './NWUserAdd'
 
 class NWUserFetch extends Component {
 constructor(props) {
@@ -49,16 +49,15 @@ handleClickPrev = () => {
     }
 
     render() {
-/*
+
         if (this.state.show === 'addForm')
         {
             return(
-                <NWCustomerAdd unmountMe={this.handleChildUnmount} />
+                <NWUserAdd unmountMe={this.handleChildUnmount} />
             )
         }
-*/
 
-            if (this.state.customers.length > 9)
+            if (this.state.users.length > 9)
             {
                 return(
                     <div>
@@ -102,7 +101,7 @@ handleClickPrev = () => {
                         <button onClick={this.handleClickPrev}>Edelliset</button>
                         <button disabled="true">Seuraavat</button>
                         <button onClick={this.handleClickAddForm}>Lisää uusi</button>
-
+                        
                         <table>
                             <thead>
                                 <tr>
