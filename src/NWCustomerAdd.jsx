@@ -103,7 +103,7 @@ InsertoiKantaan() {
             console.log(`Response from server: ${jsResponse}.`);
             if (jsResponse) {
                 console.log("Pyyntö asiakkaan tallettamiseksi tehty -- -- -- -- --");
-                //this.dismiss();
+                this.props.unmountMe()
             }
         })
 }

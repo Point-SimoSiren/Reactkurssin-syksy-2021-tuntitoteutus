@@ -10,17 +10,12 @@ import TypicodeFetch from './TypicodeFetch'
 import NWCustomerFetch from './NWCustomerFetch'
 import MD5demo from './MD5demo'
 
+
 ReactDOM.render(
   <React.StrictMode>
 
-    <MD5demo />
-    <TypicodeFetch />
     <NWCustomerFetch />
-    <App />
-    <AnalogWatch />
-    <DigitalWatch />
-    <Viestit />
-
+   
   </React.StrictMode>,
   document.getElementById('root')
 )

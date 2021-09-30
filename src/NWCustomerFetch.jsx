@@ -12,6 +12,12 @@ constructor(props) {
             take: 10,
             show: "table"
     }
+    this.handleChildUnmount = this.handleChildUnmount.bind(this)
+}
+
+handleChildUnmount() {
+    this.setState({ show: "table" })
+    this.haeNwRestApista()
 }
 
 handleClickAddForm = () => {
@@ -47,7 +53,7 @@ handleClickPrev = () => {
         if (this.state.show === 'addForm')
         {
             return(
-                <NWCustomerAdd />
+                <NWCustomerAdd unmountMe={this.handleChildUnmount} />
             )
         }
 
