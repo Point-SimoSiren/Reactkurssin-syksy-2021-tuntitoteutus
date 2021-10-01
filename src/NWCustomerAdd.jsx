@@ -111,9 +111,7 @@ InsertoiKantaan() {
 
 render() {
     return(
-    <div>
-    <h2>Asiakkaan lisääminen</h2>
-
+    
     <form className="box3" onSubmit={this.handleSubmit}>
                 <input type="text" title="Syötä asiakastunnus 5x ISO KIRJAIN" placeholder="ID = 5x ISO kirjain" onChange={this.handleChangeCustomerID} />
                 <input type="text" placeholder="Firma" onChange={this.handleChangeCompanyName} />
@@ -128,7 +126,6 @@ render() {
                 <br />
                 <button type="submit">Tallenna uudet tiedot</button>
             </form>
-    </div>
     )
 }
 
