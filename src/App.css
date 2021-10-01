@@ -8,11 +8,97 @@
 }
 
 .box3 {
+  text-align: center;
+}
+
+.App-header {
+  background-color:red;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.otsikko {
+  background-color: lightsalmon;
+  font-weight: bold;
+  color: black;
+  
+}
+.App-link {
+  color: #09d3ac;
+}
+
+.box1 {
+  background-color: burlywood;
+  width: 95%;
+  margin-left: 2%;
+  height:1200px;
+  flex-direction: column;
+  justify-content: center;
+  float: left;
+}
+.box2 {
+  background-color: cornflowerblue;
+  width: 400px;
+  height: 450px;
+  float: left;
+}
+.box3 {
   background-color: chocolate;
   width: 235px;
   height: 1000px;
   float: left;
 }
+.box4 {
+  background-color: antiquewhite;
+  width: 500px;
+  height:1200px;
+  float: left;
+}
+
+.analogikello {
+  background-color: silver;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
+
+th, td {
+  text-align: left;
+  padding: 5px;
+}
+
+th {
+  background-color: whitesmoke;
+
+}
+tr:nth-child(even) {
+  background-color: whitesmoke;
+}
+
+
+#deletetbl th, td {
+  text-align: left;
+  padding: 5px;
+}
+
+#deletetbl th {
+  background-color: orange;
+
+}
+#deletetbl tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+#deletetbl tr:nth-child(odd) {
+  background-color: #f2f2f2
+}
+  
 
 .Kello {
   margin-left: 400px;
