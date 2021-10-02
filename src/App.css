@@ -12,27 +12,23 @@
 }
 
 .App-header {
-  background-color:red;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 .otsikko {
-  background-color: lightsalmon;
   font-weight: bold;
   color: black;
-  
 }
+
 .App-link {
   color: #09d3ac;
 }
 
 .box1 {
-  background-color: burlywood;
   width: 95%;
   margin-left: 2%;
   height:1200px;
@@ -41,45 +37,30 @@
   float: left;
 }
 .box2 {
-  background-color: cornflowerblue;
-  width: 400px;
+  width: 20%;
   height: 450px;
   float: left;
 }
 .box3 {
-  background-color: chocolate;
-  width: 235px;
+  width: 30%;
   height: 1000px;
   float: left;
 }
 .box4 {
-  background-color: antiquewhite;
-  width: 500px;
+  width: 20%;
   height:1200px;
   float: left;
 }
 
 .analogikello {
-  background-color: silver;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+ 
   width: 70%;
 }
 
 th, td {
   text-align: left;
   padding: 5px;
-}
-
-th {
-  background-color: whitesmoke;
-
-}
-tr:nth-child(even) {
-  background-color: whitesmoke;
+  color: antiquewhite;
 }
 
 
@@ -88,20 +69,9 @@ tr:nth-child(even) {
   padding: 5px;
 }
 
-#deletetbl th {
-  background-color: orange;
-
-}
-#deletetbl tr:nth-child(even) {
-  background-color: #f2f2f2
-}
-#deletetbl tr:nth-child(odd) {
-  background-color: #f2f2f2
-}
-  
 
 .Kello {
-  margin-left: 400px;
+  margin-left: 20%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

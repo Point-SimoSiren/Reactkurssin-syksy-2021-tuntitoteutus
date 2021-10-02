@@ -3,6 +3,7 @@ import './App.css'
 import NWCustomerAdd from './NWCustomerAdd'
 import NWCustomerEdit from './NWCustomerEdit'
 import NWCustomerDelete from './NWCustomerDelete'
+import Helpit from './Helpit'
 
 class NWCustomerFetch extends Component {
 constructor(props) {
@@ -12,16 +13,18 @@ constructor(props) {
         recordcount: 0,
             start: 0,
             take: 10,
-            show: "table",
-            muokattavaAsiakas: {},
-            poistettavaAsiakas: {}
+            show: "table", // Oletuksena näytetään asiakas listaus, eli "table"
+            showHelp: false, // Näytetäänkö ylipäänsä joku customer aiheinen helppi vai ei
+            muokattavaAsiakas: {}, // Tähän asetetaan yksi kokonainen asiakas olio ja siitä voidaan lukea myös id
+            poistettavaAsiakas: {} // sama tässä, eli erillistä id ja id2del statea poistettavalle ja muokattavalle ei tarvita
     }
     this.handleChildUnmount = this.handleChildUnmount.bind(this)
     this.handleClickEdit = this.handleClickEdit.bind(this)
     this.handleClickDelete = this.handleClickDelete.bind(this)
 }
 
-
+// Voidaan välittää tätä samaa unMount metodia kaikille customer crud komponenteille, koska
+// riittää että kaikissa tapauksissa palataan vain table näytölle takaisin.
 handleChildUnmount() {
     this.setState({ show: "table" })
     this.haeNwRestApista()
@@ -61,6 +64,14 @@ handleClickPrev = () => {
     this.setState({ start: this.state.start + 10 }, this.haeNwRestApista);
   }
 
+  /* Tämä määrittelee ainoastaan näytetäänkö mikä tahansa asiakasaiheinen helppi.
+     Helpit -komponentille kulloinkin annettava propsi "moduli" määrää minkä yksilöllisen -toiminnon helppi
+     helppi kompontin sisällä näytetään. Kaikki vaihtoehdot on oltava siellä kovakoodattuna. */
+  näytäHelppiPainettu = () => {
+    this.setState({showHelp: !this.state.showHelp}) // ! -operaattori vaihtaa boolean tilan aina toisinpäin true <--> false
+    } 
+
+
     componentDidMount() {
        this.haeNwRestApista()
     }
@@ -82,10 +93,17 @@ handleClickPrev = () => {
                 <div className="box1">
                     <h2>Asiakkaan lisääminen</h2>
                     <div>
-                    <button>Näytä opaste</button>
-                    <button onClick={this.handleClickTable}>Selaa asiakkaita</button>
+
+                    {this.state.showHelp === false ? <button onClick={this.näytäHelppiPainettu}>Näytä opaste</button>
+                    : <button onClick={this.näytäHelppiPainettu}>Piilota opaste</button>}
+
+                    <button onClick={this.handleChildUnmount}>Selaa asiakkaita</button>
                     </div>
+
+                    {this.state.showHelp === true ? <Helpit moduli={"customerAdd"} /> : null}
+                   
                     <NWCustomerAdd unmountMe={this.handleChildUnmount} />
+
                 </div>
             )
         }
@@ -97,10 +115,16 @@ handleClickPrev = () => {
             return (<div className="box3">
                 <h2>Asiakkaan muokkaus</h2>
                 <div>
-                    <button>Näytä opaste</button>
-                    <button onClick={this.handleClickTable}>Selaa asiakkaita</button>
+                     {this.state.showHelp === false ? <button onClick={this.näytäHelppiPainettu}>Näytä opaste</button>
+                    : <button onClick={this.näytäHelppiPainettu}>Piilota opaste</button>}
+
+                    <button onClick={this.handleChildUnmount}>Selaa asiakkaita</button>
                 </div>
+
+                {this.state.showHelp === true ? <Helpit moduli={"customerEdit"} /> : null}
+
                 <NWCustomerEdit asiakasObj={this.state.muokattavaAsiakas} unmountMe={this.handleChildUnmount} />
+
             </div>
             )
         } 
@@ -111,10 +135,15 @@ handleClickPrev = () => {
             return (<div className="box1">
                 <h2>Tuotetietojen poiston vahvistus</h2>
                 <div>
-                    <button>Näytä opaste</button>
-                    <button onClick={this.handleClickTable}>Selaa tuotteita</button>
+                {this.state.showHelp === false ? <button onClick={this.näytäHelppiPainettu}>Näytä opaste</button>
+                    : <button onClick={this.näytäHelppiPainettu}>Piilota opaste</button>}
+                    <button onClick={this.handleChildUnmount}>Selaa asiakkaita</button>
                 </div>
+
+                {this.state.showHelp === true ? <Helpit moduli={"customerAdd"} /> : null}
+
                 <NWCustomerDelete asiakasObj={this.state.poistettavaAsiakas} unmountMe={this.handleChildUnmount} />
+
             </div>
             )
 
@@ -128,10 +157,14 @@ handleClickPrev = () => {
                     <div>
                         <h2>Asiakkaat</h2>
 
-                        <button>Näytä opaste</button>
+                        {this.state.showHelp === false ? <button onClick={this.näytäHelppiPainettu}>Näytä opaste</button>
+                    : <button onClick={this.näytäHelppiPainettu}>Piilota opaste</button>}
+
                         <button onClick={this.handleClickPrev}>Edelliset</button>
                         <button onClick={this.handleClickNext}>Seuraavat</button>
                         <button onClick={this.handleClickAdd}>Lisää uusi</button>
+
+                        {this.state.showHelp === true ? <Helpit moduli={"customerFetch"} /> : null}
 
                        <table>
                             <thead>
@@ -164,10 +197,14 @@ handleClickPrev = () => {
                     <div>
                         <h2>Asiakkaat</h2>
 
-                        <button>Näytä opaste</button>
+                        {this.state.showHelp === false ? <button onClick={this.näytäHelppiPainettu}>Näytä opaste</button>
+                    : <button onClick={this.näytäHelppiPainettu}>Piilota opaste</button>}
+
                         <button onClick={this.handleClickPrev}>Edelliset</button>
                         <button disabled="true">Seuraavat</button>
                         <button onClick={this.handleClickAddForm}>Lisää uusi</button>
+
+                        {this.state.showHelp === true ? <Helpit moduli={"customerFetch"} /> : null}
 
                        <table>
                             <thead>

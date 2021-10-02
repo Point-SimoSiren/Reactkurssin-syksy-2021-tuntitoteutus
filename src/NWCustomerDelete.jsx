@@ -30,6 +30,7 @@ class NWCustomerDelete extends Component {
     NWDeleteRestApista() {
 
         let apiUrl = 'https://localhost:5001/api/customers/' + this.props.asiakasObj.customerId
+        console.log(apiUrl)
 
         fetch(apiUrl, {
             method: 'DELETE',
@@ -52,8 +53,10 @@ class NWCustomerDelete extends Component {
             <form className="box4" key={this.props.asiakasObj.CustomerID} onSubmit={this.handlePerformDelete}>
                 <table id="deletetbl">
                     <tbody >
+                        <label>Poistettava asiakas</label>
                         <tr><td className="otsikko">Asiakastunnus:</td><td>{this.props.asiakasObj.customerId}</td></tr>
                         <tr><td className="otsikko">Firman nimi:</td><td>{this.props.asiakasObj.companyName}</td></tr>
+                        <tr><td className="otsikko">Maa:</td><td>{this.props.asiakasObj.country}</td></tr>
                     </tbody>
                 </table>
                 <br />

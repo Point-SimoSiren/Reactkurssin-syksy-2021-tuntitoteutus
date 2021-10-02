@@ -17,6 +17,41 @@ class Helpit extends Component {
             </div>
             )
         }
+
+        if (this.props.moduli === "customerFetch") {
+            return (<div className="helppi">
+                <h4>Helppi</h4>
+                <p>Tällä toiminnolla voidaan selata asiakkaita 10 kerrallaan.</p>
+            </div>
+            )
+        }
+
+        if (this.props.moduli === "customerAdd") {
+            return (<div className="helppi">
+                <h4>Helppi</h4>
+                <p>Tällä toiminnolla voidaan lisätä uusi asiakas.</p>
+                <p>Huomaa, että ID on annettava, ja sen tulee olla 5 isoa kirjainta.</p>
+            </div>
+            )
+        }
+
+        if (this.props.moduli === "customerDelete") {
+            return (<div className="helppi">
+                <h4>Helppi</h4>
+                <p>Tällä toiminnolla voidaan poistaa asiakas.</p>
+                <p>Huomaa, että asiakkaita, joilla on tilauksia ei voi poistaa.</p>
+            </div>
+            )
+        }
+
+        if (this.props.moduli === "customerEdit") {
+            return (<div className="helppi">
+                <h4>Helppi</h4>
+                <p>Tällä toiminnolla voidaan muokata asiakkaan tietoja.</p>
+                <p>ID tietoa ei kuitenkaan voi muokata.</p>
+            </div>
+            )
+        }
     }
 }
 
