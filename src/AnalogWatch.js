@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Clock from 'react-clock'
 import 'react-clock/dist/Clock.css' // Tämä tarvitaan nykyään!
-import Helpit from './Helpit'
+//import Helpit from './Helpit'
 
 class AnalogWatch extends Component {
     constructor(props) {
@@ -49,13 +49,13 @@ class AnalogWatch extends Component {
         
         return (
             <div className="Kello">
-                <Clock value={this.state.pvm} size={300} hourMarksLength={20} />
+                <Clock value={this.state.pvm} size={200} hourMarksLength={20} />
 
-                {this.state.näytäHelppi === false && <button onClick={this.näytäHelppiPainettu}>Näytä helppi</button>}
+                {/*this.state.näytäHelppi === false && <button onClick={this.näytäHelppiPainettu}>Näytä helppi</button>*/}
 
-                {this.state.näytäHelppi === true && <button onClick={this.näytäHelppiPainettu}>Piilota helppi</button>}
+                {/*this.state.näytäHelppi === true && <button onClick={this.näytäHelppiPainettu}>Piilota helppi</button>*/}
 
-                {this.state.näytäHelppi === true && <Helpit moduli={"kello"} />}
+                {/*this.state.näytäHelppi === true && <Helpit moduli={"kello"} />*/}
 
             </div>
         )

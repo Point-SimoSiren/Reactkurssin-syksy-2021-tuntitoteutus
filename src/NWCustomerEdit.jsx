@@ -113,6 +113,7 @@ class NWCustomerEdit extends Component {
         console.log("asiakasJson = ", asiakasJson)
 
         let apiUrl = 'https://localhost:5001/api/customers/' + this.state.CustomerID
+        console.log(apiUrl)
 
         fetch(apiUrl, {
             method: "PUT",

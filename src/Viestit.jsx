@@ -67,7 +67,7 @@ class Viestit extends Component {
         }
 
         return (
-            <div className="App">
+            <div>
 
                 <h3>Viestit sovellusikkuna</h3>
                 <p>Tähän tulee viestejä:</p>
