@@ -10,40 +10,60 @@ constructor(props) {
         recordcount: 0,
             start: 0,
             take: 10,
-            show: "table"
+            show: "table",
+            search: ""
     }
     this.handleChildUnmount = this.handleChildUnmount.bind(this)
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.performSearch = this.performSearch.bind(this);
 }
 
-handleChildUnmount() {
-    this.setState({ show: "table" })
-    this.haeNwRestApista()
-}
-
-handleClickAddForm = () => {
-this.setState({show: 'addForm'})
-}
-
-handleClickPrev = () => {
-    let startvalue = this.state.start;
-    if (startvalue > 0) {
-      startvalue = startvalue - 10;
+    handleChildUnmount() {
+        this.setState({ show: "table" })
+        this.haeNwRestApista()
     }
-    this.setState({ start: startvalue }, this.haeNwRestApista);
-  }
 
-  handleClickNext = () => {
-    this.setState({ start: this.state.start + 10 }, this.haeNwRestApista);
-  }
+    handleClickAddForm = () => {
+    this.setState({show: 'addForm'})
+    }
+
+    handleClickPrev = () => {
+        let startvalue = this.state.start;
+        if (startvalue > 0) {
+        startvalue = startvalue - 10;
+        }
+        this.setState({ start: startvalue }, this.haeNwRestApista);
+    }
+
+     handleClickNext = () => {
+        this.setState({ start: this.state.start + 10 }, this.haeNwRestApista);
+     }
+
+     handleSearchChange(event) {
+        var syöte = event.target.value
+         this.setState({ search: syöte })
+         }
+
+    performSearch() {
+        this.haeNwRestApista()
+    }
 
     componentDidMount() {
        this.haeNwRestApista()
     }
 
     haeNwRestApista() {
-    //fetch('https://localhost:5001/api/customers?_page='+this.state.start+'&_limit='+this.state.take)
-    fetch(`https://localhost:5001/api/users/r?offset= ${this.state.start}
-    &limit= ${this.state.take}`)
+        let uri = ""
+
+        if (this.state.search !== "") {
+            uri = `https://localhost:5001/api/users/lastname/${this.state.search}`
+        }
+
+        else{
+            uri = `https://localhost:5001/api/users/r?offset= ${this.state.start} &limit= ${this.state.take}`
+        }
+
+        fetch(uri)
     .then(res => res.json())
     .then(oliot => this.setState({users: oliot}))
     }
@@ -66,6 +86,9 @@ handleClickPrev = () => {
                         <button onClick={this.handleClickPrev}>Edelliset</button>
                         <button onClick={this.handleClickNext}>Seuraavat</button>
                         <button onClick={this.handleClickAddForm}>Lisää uusi</button>
+
+                        <input type="text" onChange={this.handleSearchChange} placeholder="Hae sukunimellä"></input>
+                    <button onClick={this.performSearch}>Haku</button>
 
                        <table>
                             <thead>
@@ -101,6 +124,10 @@ handleClickPrev = () => {
                         <button onClick={this.handleClickPrev}>Edelliset</button>
                         <button disabled="true">Seuraavat</button>
                         <button onClick={this.handleClickAddForm}>Lisää uusi</button>
+
+                        <input type="text" onChange={this.handleSearchChange} placeholder="Hae sukunimellä"></input>
+                        <button onClick={this.performSearch}>Haku</button>
+                        
                         
                         <table>
                             <thead>
