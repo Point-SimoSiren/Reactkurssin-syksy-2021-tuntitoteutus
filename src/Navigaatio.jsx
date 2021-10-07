@@ -14,7 +14,7 @@ class Navigaatio extends Component {
           <Router>
             <div>
             <marquee direction="down" width="800" height="130" behavior="alternate">
-  <marquee behavior="alternate">
+  <marquee>
     <img style={{width: '400px'}} src={NWkuva} />
   </marquee>
 </marquee>

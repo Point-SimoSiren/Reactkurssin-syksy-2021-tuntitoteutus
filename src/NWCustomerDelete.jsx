@@ -1,36 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css'
 
-class NWCustomerDelete extends Component {
-    constructor(props) {
-        super(props)
-        this.handlePerformDelete = this.handlePerformDelete.bind(this)
+const NWCustomerDelete = ({asiakasObj, unmountMe}) => {
+
+    const handlePerformDelete = e => {
+        e.preventDefault()
+        NWDeleteRestApista()
     }
 
-    handleSubmit(event) {
-        alert('Poistettava tuote: ' + this.props.tuoteObj.productId)
-        event.preventDefault()
-        this.InsertoiKantaan()
-    }
+    const NWDeleteRestApista = () => {
 
-    callBackRoutine() {
-        console.log('Logins callback ', this.props.tuoteObj.productId);
-    }
-
-    handlePerformDelete(event) {
-        event.preventDefault()
-        this.NWDeleteRestApista()
-    }
-
-    ResetDeleteDone() {
-        this.handleClickTable()
-        this.HaeNWRestApista()
-    }
-
-    NWDeleteRestApista() {
-
-        let apiUrl = 'https://localhost:5001/api/customers/' + this.props.asiakasObj.customerId
-        console.log(apiUrl)
+        let apiUrl = 'https://localhost:5001/api/customers/' + asiakasObj.customerId
 
         fetch(apiUrl, {
             method: 'DELETE',
@@ -39,24 +19,26 @@ class NWCustomerDelete extends Component {
                 'Content-Type': 'application/json'
             },
             body: null
-        }).then((res) => res.json()) // Json responce muutetaan javascriptiksi nimelle vastaus
+        })
+        
+        .then((res) => res.json()) // Json responce muutetaan javascriptiksi nimelle vastaus
             .then((vastaus) => {
                 console.log('Response from server: ', vastaus);
                 if (vastaus) {
-                    this.props.unmountMe()
+                    unmountMe()
                 }
             })
     }
-    render() {
-        console.log(this.props.asiakasObj)
-        return (
-            <form className="box4" key={this.props.asiakasObj.CustomerID} onSubmit={this.handlePerformDelete}>
+
+    return(
+
+            <form className="box4" key={asiakasObj.CustomerID} onSubmit={handlePerformDelete}>
                 <table id="deletetbl">
                     <tbody >
                         <label>Poistettava asiakas</label>
-                        <tr><td className="otsikko">Asiakastunnus:</td><td>{this.props.asiakasObj.customerId}</td></tr>
-                        <tr><td className="otsikko">Firman nimi:</td><td>{this.props.asiakasObj.companyName}</td></tr>
-                        <tr><td className="otsikko">Maa:</td><td>{this.props.asiakasObj.country}</td></tr>
+                        <tr><td className="otsikko">Asiakastunnus:</td><td>{asiakasObj.customerId}</td></tr>
+                        <tr><td className="otsikko">Firman nimi:</td><td>{asiakasObj.companyName}</td></tr>
+                        <tr><td className="otsikko">Maa:</td><td>{asiakasObj.country}</td></tr>
                     </tbody>
                 </table>
                 <br />
@@ -65,6 +47,6 @@ class NWCustomerDelete extends Component {
                 <button type="submit">Suorita</button>
             </form>
         )
-    }
 }
+
 export default NWCustomerDelete

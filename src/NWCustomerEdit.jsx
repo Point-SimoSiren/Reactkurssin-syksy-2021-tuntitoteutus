@@ -71,10 +71,7 @@ class NWCustomerEdit extends Component {
         this.InsertoiKantaan()
     }
 
-    callBackRoutine() {
-        console.log('NWCustomerEDIT:  callBackRoutine >>-' + this.state.asiakasObj.CustomerID);
-    }
-
+    
     componentDidMount() {
         this.setState({
             CustomerID: this.props.asiakasObj.customerId,
@@ -113,7 +110,7 @@ class NWCustomerEdit extends Component {
         console.log("asiakasJson = ", asiakasJson)
 
         let apiUrl = 'https://localhost:5001/api/customers/' + this.state.CustomerID
-        console.log(apiUrl)
+        //console.log(apiUrl)
 
         fetch(apiUrl, {
             method: "PUT",
@@ -124,7 +121,7 @@ class NWCustomerEdit extends Component {
             body: asiakasJson
         }).then((res) => res.json()) // Vastaus muutetaan javascriptiksi jsonista
             .then((vastaus) => {
-                console.log(`Response from server: ${vastaus}.`)
+                alert(`Response from server: ${vastaus}.`)
                 if (vastaus) {
                     this.props.unmountMe()
                 }
@@ -134,12 +131,17 @@ class NWCustomerEdit extends Component {
     render() {
         return (
             <form className="box3" onSubmit={this.handleSubmit}>
+
                 <label>Yritys</label><br />
-                <input type="text" value={this.state.CompanyName} placeholder="CompanyName" onChange={this.handleChangeCompanyName} />
+                <input type="number" min="1" max="5"
+                 value={this.state.CompanyName} placeholder="CompanyName" onChange={this.handleChangeCompanyName} />
+
                 <label>Yhteyshenkilö</label><br />
                 <input type="text" value={this.state.ContactName} placeholder="ContactName" onChange={this.handleChangeContactName} /><br />
+
                 <label>Titteli</label><br />
                 <input type="text" value={this.state.ContactTitle} placeholder="ContactTitle" onChange={this.handleChangeContactTitle} /><br />
+
                 <label>Osoite</label><br />
                 <input type="text" value={this.state.Address} placeholder="Address" onChange={this.handleChangeAddress} /><br />
                 <label>Postinro</label><br />

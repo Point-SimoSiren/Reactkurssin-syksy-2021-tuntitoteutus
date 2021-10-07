@@ -102,7 +102,7 @@ handleClickPrev = () => {
 
                     {this.state.showHelp === true ? <Helpit moduli={"customerAdd"} /> : null}
                    
-                    <NWCustomerAdd unmountMe={this.handleChildUnmount} />
+                   <NWCustomerAdd unmountMe={this.handleChildUnmount} />
 
                 </div>
             )
@@ -140,7 +140,7 @@ handleClickPrev = () => {
                     <button onClick={this.handleChildUnmount}>Selaa asiakkaita</button>
                 </div>
 
-                {this.state.showHelp === true ? <Helpit moduli={"customerAdd"} /> : null}
+                {this.state.showHelp === true ? <Helpit moduli={"customerDelete"} /> : null}
 
                 <NWCustomerDelete asiakasObj={this.state.poistettavaAsiakas} unmountMe={this.handleChildUnmount} />
 
@@ -164,7 +164,7 @@ handleClickPrev = () => {
                         <button onClick={this.handleClickNext}>Seuraavat</button>
                         <button onClick={this.handleClickAdd}>Lisää uusi</button>
 
-                        {this.state.showHelp === true ? <Helpit moduli={"customerFetch"} /> : null}
+                        {this.state.showHelp === true && <Helpit moduli={"customerFetch"} />}
 
                        <table>
                             <thead>
