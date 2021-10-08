@@ -15,8 +15,8 @@ constructor(props) {
             take: 10,
             show: "table", // Oletuksena näytetään asiakas listaus, eli "table"
             showHelp: false, // Näytetäänkö ylipäänsä joku customer aiheinen helppi vai ei
-            muokattavaAsiakas: {}, // Tähän asetetaan yksi kokonainen asiakas olio ja siitä voidaan lukea myös id
-            poistettavaAsiakas: {} // sama tässä, eli erillistä id ja id2del statea poistettavalle ja muokattavalle ei tarvita
+            muokattavaAsiakas: {}, // Tähän asetetaan yksi kokonainen asiakas olio
+            poistettavaAsiakas: {} // sama tässä
     }
     this.handleChildUnmount = this.handleChildUnmount.bind(this)
     this.handleClickEdit = this.handleClickEdit.bind(this)
