@@ -15,8 +15,8 @@ constructor(props) {
             take: 10,
             show: "table", // Oletuksena näytetään asiakas listaus, eli "table"
             showHelp: false, // Näytetäänkö ylipäänsä joku customer aiheinen helppi vai ei
-            muokattavaAsiakas: {}, // Tähän asetetaan yksi kokonainen asiakas olio
-            poistettavaAsiakas: {} // sama tässä
+            muokattavaAsiakas: {}, // Tähän asetetaan yksi kokonainen asiakas olio ja siitä voidaan lukea myös id
+            poistettavaAsiakas: {} // sama tässä, eli erillistä id ja id2del statea poistettavalle ja muokattavalle ei tarvita
     }
     this.handleChildUnmount = this.handleChildUnmount.bind(this)
     this.handleClickEdit = this.handleClickEdit.bind(this)
@@ -76,15 +76,36 @@ handleClickPrev = () => {
        this.haeNwRestApista()
     }
 
+
     haeNwRestApista() {
-    fetch(`https://localhost:5001/api/customers/r?offset= ${this.state.start}
-    &limit= ${this.state.take}`)
+        let jwtoken = ''
+        if (localStorage.getItem('token') == undefined)
+        {
+            return
+        }
+         jwtoken = localStorage.getItem('token')
+
+        let uri = `https://localhost:5001/api/customers/r?offset= ${this.state.start}
+        &limit= ${this.state.take}`
+
+        fetch(uri, {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + jwtoken,
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            }
+          })
     .then(res => res.json())
     .then(oliot => this.setState({customers: oliot}))
     }
+    
 
 
     render() {
+
+        const user = localStorage.getItem('user')
+
         // ___________________ADD_________________________________________________
 
         if (this.state.show === 'addForm')
@@ -234,7 +255,12 @@ handleClickPrev = () => {
             }
             else {
                 return(
-                    <h4>Ladataan...</h4>
+                    <>
+
+                   {!user && <h4>Kirjaudu nähdäksesi tiedot</h4>}
+                   {user && <h4>Ladataan</h4>}
+
+                   </>
                 )
             }
         }

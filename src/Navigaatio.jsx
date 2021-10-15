@@ -6,10 +6,15 @@ import NWUserFetch from './NWUserFetch'
 import TypicodeFetch from './TypicodeFetch'
 import Viestit from './Viestit'
 import NWkuva from './nwkuva.png'
-import logo from './logo.svg'
+import Login from './Login'
 
 class Navigaatio extends Component {
-    render() {
+
+    
+  render() {
+
+    const aid = localStorage.getItem('AccesslevelId')
+    
       return (
           <Router>
             <div>
@@ -18,13 +23,16 @@ class Navigaatio extends Component {
     <img style={{width: '400px'}} src={NWkuva} />
   </marquee>
 </marquee>
+
+<h3 style={{ marginLeft: '60%' }}><Login /> </h3>
+
                 <nav className='navbar navbar-expand-lg'>
                 <ul className='navbar-nav mr-auto'>
                     <li><Link to={'/'} className='nav-link'>Kello</Link></li>
                     <li><Link to={'/TypicodeFetch'} className='nav-link'>Typicode</Link></li>
                     <li><Link to={'/NWCustomerFetch'} className='nav-link'>Asiakashallinta</Link></li>
                     <li><Link to={'/NWProductsFetch'} className='nav-link'>Tuotehallinta</Link></li>
-                    <li><Link to={'/UserFetch'} className='nav-link'>Käyttäjähallinta</Link></li>
+                    {aid == 1 && <li><Link to={'/UserFetch'} className='nav-link'>Käyttäjähallinta</Link></li>}
                     <li><Link to={'/Viestit'} className='nav-link'>Viestit</Link></li>
                  </ul>
             </nav>
